@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+    <!-- Círculo base -->
+    <circle cx="25" cy="25" r="23" fill="#2196F3"/>
+    
+    <!-- Símbolo $ estilizado -->
+    <path d="M25 10 
+             C30 10, 35 15, 35 20
+             C35 25, 30 27, 25 28
+             C20 29, 15 31, 15 35
+             C15 40, 20 42, 25 42
+             M25 8 V12 M25 40 V44" 
+          stroke="white" 
+          fill="none"
+          stroke-width="4"
+          stroke-linecap="round"/>
+    
+    <!-- Flecha inteligente -->
+    <path d="M32 20 L38 20 L35 15" 
+          stroke="white" 
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
+</svg>
