@@ -1,16 +1,68 @@
-# React + Vite
+# 💳 CreditSmart React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CreditSmart es una aplicación web moderna desarrollada en React para la simulación y solicitud de productos financieros. Permite a los usuarios explorar un catálogo de tarjetas de crédito, simular cuotas con filtros avanzados y realizar solicitudes en línea.
 
-Currently, two official plugins are available:
+## 🚀 Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Catálogo de Productos**: Visualización dinámica de tarjetas de crédito con detalles clave (tasa, montos, plazos).
+- **Simulador Inteligente**:
+  - Filtrado en tiempo real por nombre y descripción.
+  - Filtrado inteligente por rangos de monto (Bajo, Medio, Alto).
+  - Búsqueda insensible a mayúsculas y acentos (normalización de texto).
+- **Solicitud en Línea**: Formulario controlado con validación de campos.
+- **Diseño Responsivo**: Interfaz adaptable a móviles y escritorio con menú "sticky".
+- **Navegación SPA**: Enrutamiento fluido sin recargas usando React Router.
 
-## React Compiler
+## 🛠️ Tecnologías Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Core**: React 18 (Vite)
+- **Lenguaje**: JavaScript (ES6+)
+- **Estilos**: CSS3 Modular y Variables CSS
+- **Enrutamiento**: React Router DOM v6
+- **Control de Versiones**: Git
 
-## Expanding the ESLint configuration
+## 📦 Instalación y Ejecución
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Sigue estos pasos para correr el proyecto localmente:
+
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone <URL_DEL_REPOSITORIO>
+    cd creditsmart-react
+    ```
+
+2.  **Instalar dependencias:**
+    ```bash
+    npm install
+    ```
+
+3.  **Ejecutar servidor de desarrollo:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Abrir en el navegador:**
+    Visita `http://localhost:5173` (o el puerto que indique la consola).
+
+## 📂 Estructura del Proyecto
+
+```
+src/
+├── components/      # Componentes reutilizables (Header, Footer, Cards)
+├── pages/           # Vistas principales (Catalog, Simulator, Solicitar)
+├── data/            # Datos estáticos (mock data)
+├── css/             # Estilos modulares
+├── App.jsx          # Componente principal y configuración de rutas
+└── main.jsx         # Punto de entrada
+```
+
+## ✨ Puntos Destacados (Rúbrica)
+
+- ✅ **Componentes Funcionales**: Uso de props y desestructuración.
+- ✅ **Hooks**: Gestión de estado con `useState` para filtros y formularios.
+- ✅ **Renderizado Condicional**: Manejo de estados de carga y listas vacías.
+- ✅ **Listas y Keys**: Renderizado eficiente de listas con `.map()`.
+- ✅ **Normalización de Datos**: Búsqueda robusta ignorando diacríticos.
+
+---
+Desarrollado con ❤️ por [Tu Nombre]

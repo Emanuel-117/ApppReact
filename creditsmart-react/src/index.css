@@ -1,68 +1,327 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  /* Variables: colores y tonos usados en todo el sitio */
+  --primary: #1E59A6;
+  /* color principal (botones, header) */
+  --success: #008060;
+  /* color para valores positivos (tasas) */
+  --bg: #E6EBF0;
+  /* fondo general */
+  --text: #212121;
+  /* color del texto */
+  --muted: #6c757d;
+  /* color gris para descripciones */
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
+/* Regla base para evitar problemas de cajas */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-a:hover {
-  color: #535bf2;
+
+/* Estilos del <body> */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Tipografía fluida: adapta el tamaño base según ancho de ventana*/
+html {
+  font-size: clamp(14px, 1.2vw, 18px);
 }
 
 body {
-  margin: 0;
+  font-size: 1rem;
+}
+
+/* Contenedor principal centrado */
+main {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 16px;
+}
+
+/* Header: barra superior con navegación */
+header {
+  background: #003366;
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  position: sticky;
+  /* Hace que se pegue */
+  top: 0;
+  /* Se pega al borde superior */
+  z-index: 1000;
+  /* Se asegura de estar por encima de todo */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  /* Sombra para resaltar */
+}
+
+/* Logo y título */
+.logo-container {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  align-items: center;
+  justify-content: left;
+  gap: 10px;
+  margin-bottom: 10px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.logo-container img,
+.logo-icon {
+  height: 45px;
+  width: 45px;
+  margin-right: 5px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.logo-container h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+/* Enlaces de la navegación  */
+header nav {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 6px 8px;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+}
+
+nav a:hover {
+  opacity: 0.95;
+  box-shadow: 0 4px 12px rgb(177, 204, 231);
+  transform: translateY(-2px);
+}
+
+nav a.active {
+  background: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+}
+
+
+/* Botones reutilizables */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(30, 89, 166, 0.4);
+}
+
+.btn-secondary {
+  background: #6c757d;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+/* Pie de página  */
+footer {
+  text-align: center;
+  padding: 12px;
+  background: #002244;
+  color: white;
+  margin-top: 30px;
+}
+
+/* Hero: banda con gradiente y texto centrado */
+.hero {
+  background: linear-gradient(90deg, #2b6777 0%, #2f86a1 50%, #2b6777 100%);
+  color: white;
+  border-radius: 8px;
+  padding: 28px 18px;
+  margin: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-inner {
+  max-width: 1000px;
+  text-align: center;
+}
+
+.hero h2 {
+  margin: 0 0 8px 0;
+  font-size: clamp(1.25rem, 2.6vw, 2rem);
+  font-weight: 600;
+}
+
+.hero-desc {
+  margin: 0 auto 14px auto;
+  max-width: 720px;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.5;
+}
+
+/* Grid de tarjetas (responsive con auto-fit) */
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  /* Aumenté un poco el mínimo para que no se vean muy estrechas */
+  gap: 24px;
+  padding: 12px 0;
+  /* Quité padding lateral para ganar espacio en móviles */
+}
+
+/* Tarjeta de producto */
+.card-credito {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  /* Un poco más redondeado */
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  /* Para que todas tengan la misma altura visualmente si están en fila */
+}
+
+.card-credito:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabecera de la tarjeta */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 12px;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.icono-credito {
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: #f0f4f8;
+  border-radius: 50%;
+}
+
+.descripcion-corta {
+  color: var(--muted);
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Contenido principal de la tarjeta */
+.card-body {
+  flex: 1;
+  /* Empuja el footer hacia abajo */
+  display: flex;
+  flex-direction: column;
+}
+
+.card-body p {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  /* Alinea etiqueta y valor */
+}
+
+.tasa-interes {
+  color: var(--success);
+  font-weight: 700;
+  background: #e8f5e9;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+/* Área de acciones */
+.card-actions {
+  margin-top: 20px;
+}
+
+.card-actions .btn-primary {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 12px;
+  font-weight: 600;
+}
+
+/* Titulo seccion */
+.titulo-seccion {
+  text-align: center;
+  margin: 30px 0 20px;
+}
+
+.titulo-seccion h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 2rem;
+}
+
+/* Reglas responsive */
+@media (max-width: 768px) {
+  main {
+    padding: 16px;
+    margin: 0;
   }
-  a:hover {
-    color: #747bff;
+
+  .catalogo {
+    grid-template-columns: 1fr;
+    /* Una sola columna en móviles */
+    gap: 16px;
   }
-  button {
-    background-color: #f9f9f9;
+
+  .logo-container {
+    justify-content: center;
+  }
+
+  header nav {
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
   }
 }
