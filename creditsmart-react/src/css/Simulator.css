@@ -1,0 +1,89 @@
+/* Contenedor principal del simulador */
+.simulator-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px;
+}
+
+.simulator-container h2 {
+    text-align: center;
+    color: var(--text);
+    margin-bottom: 20px;
+}
+
+/* Zona de filtros: inputs y selects alineados */
+.filtros {
+    background: #e9ecef;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.filtro-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+}
+
+.filtro-item label {
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.filtro-item input,
+.filtro-item select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: white;
+}
+
+.filtro-item input:focus,
+.filtro-item select:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.filtros button {
+    padding: 10px 20px;
+    margin-top: 0;
+}
+
+/* Resultados: grid de tarjetas */
+.resultados-simulador {
+    margin-top: 18px;
+}
+
+.resultados-simulador h3 {
+    color: var(--text);
+    margin-bottom: 16px;
+}
+
+.no-results {
+    text-align: center;
+    color: #d32f2f;
+    padding: 40px 20px;
+    font-size: 1.1rem;
+}
+
+/* Responsive: pasar filtros a columna en pantallas pequeñas */
+@media (max-width: 768px) {
+    .filtros {
+        flex-direction: column;
+    }
+
+    .filtro-item {
+        width: 100%;
+    }
+
+    .filtros button {
+        width: 100%;
+    }
+}

@@ -1,0 +1,123 @@
+import { useState } from 'react';
+import CreditCards from '../components/CreditCards';
+import { creditsData } from '../data/creditsData';
+import '../css/Simulator.css';
+
+
+const Simulator = () => {
+  const [searchText, setSearchText] = useState('');
+  const [rangoMonto, setRangoMonto] = useState('');
+  const [filteredCredits, setFilteredCredits] = useState(creditsData);
+
+  // Función auxiliar para normalizar texto (quitar tildes y pasar a minúsculas)
+  const normalizeText = (text) => {
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  };
+
+  // Función para aplicar filtros
+  const handleFilter = () => {
+    let filtered = [...creditsData];
+
+    // Filtrar por texto de búsqueda (ignorando tildes y mayúsculas)
+    if (searchText.trim() !== '') {
+      const searchNormalized = normalizeText(searchText);
+
+      filtered = filtered.filter(credit =>
+        normalizeText(credit.name).includes(searchNormalized) ||
+        normalizeText(credit.description).includes(searchNormalized)
+      );
+    }
+
+    // Filtrar por rango de monto
+    if (rangoMonto !== '') {
+      filtered = filtered.filter(credit => {
+        if (rangoMonto === 'bajo') {
+          // Muestra si el crédito empieza en menos de 20M
+          return credit.minAmount <= 20000000;
+        } else if (rangoMonto === 'medio') {
+          // Muestra si el crédito tiene cobertura entre 20M y 150M
+          // (el mínimo es menor a 150M Y el máximo es mayor a 20M)
+          return credit.minAmount <= 150000000 && credit.maxAmount >= 20000000;
+        } else if (rangoMonto === 'alto') {
+          // Muestra si el crédito llega a más de 150M
+          return credit.maxAmount >= 150000000;
+        }
+        return true;
+      });
+    }
+
+    setFilteredCredits(filtered);
+  };
+
+  // Función para limpiar filtros
+  const handleReset = () => {
+    setSearchText('');
+    setRangoMonto('');
+    setFilteredCredits(creditsData);
+  };
+
+  return (
+    <div className="simulator-container">
+      <h2>Simulador y Filtro de Créditos</h2>
+
+      {/* Zona de filtros */}
+      <div className="filtros">
+        <div className="filtro-item">
+          <label htmlFor="buscar">Buscar:</label>
+          <input
+            type="text"
+            id="buscar"
+            name="buscar"
+            placeholder="Ej: Crédito Vehículo"
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+          />
+        </div>
+
+        <div className="filtro-item">
+          <label htmlFor="rango-monto">Rango de Monto:</label>
+          <select
+            id="rango-monto"
+            name="rango-monto"
+            value={rangoMonto}
+            onChange={(e) => setRangoMonto(e.target.value)}
+          >
+            <option value="">Todos los rangos</option>
+            <option value="bajo">Hasta $20.000.000</option>
+            <option value="medio">$20.000.000 - $150.000.000</option>
+            <option value="alto">Más de $150.000.000</option>
+          </select>
+        </div>
+
+        <button className="btn-primary" onClick={handleFilter}>
+          Aplicar filtros
+        </button>
+        <button className="btn-secondary" onClick={handleReset}>
+          Limpiar
+        </button>
+      </div>
+
+      {/* Resultados */}
+      <section className="resultados-simulador">
+        <h3>Resultados ({filteredCredits.length} producto{filteredCredits.length !== 1 ? 's' : ''})</h3>
+
+        {filteredCredits.length === 0 ? (
+          <p className="no-results">No se encontraron créditos con los filtros aplicados</p>
+        ) : (
+          <div className="catalogo">
+            {filteredCredits.map(credit => (
+              <div key={credit.id} style={{ height: '100%' }}>
+                <CreditCards credit={credit} />
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+    </div>
+  );
+};
+
+export default Simulator;
