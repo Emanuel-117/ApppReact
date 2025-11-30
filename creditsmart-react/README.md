@@ -1,8 +1,8 @@
-# 💳 CreditSmart React
+# CreditSmart React
 
 CreditSmart es una aplicación web moderna desarrollada en React para la simulación y solicitud de productos financieros. Permite a los usuarios explorar un catálogo de tarjetas de crédito, simular cuotas con filtros avanzados y realizar solicitudes en línea.
 
-## 🚀 Características Principales
+## Características Principales
 
 - **Catálogo de Productos**: Visualización dinámica de tarjetas de crédito con detalles clave (tasa, montos, plazos).
 - **Simulador Inteligente**:
@@ -13,7 +13,7 @@ CreditSmart es una aplicación web moderna desarrollada en React para la simulac
 - **Diseño Responsivo**: Interfaz adaptable a móviles y escritorio con menú "sticky".
 - **Navegación SPA**: Enrutamiento fluido sin recargas usando React Router.
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **Core**: React 18 (Vite)
 - **Lenguaje**: JavaScript (ES6+)
@@ -21,7 +21,7 @@ CreditSmart es una aplicación web moderna desarrollada en React para la simulac
 - **Enrutamiento**: React Router DOM v6
 - **Control de Versiones**: Git
 
-## 📦 Instalación y Ejecución
+## Instalación y Ejecución
 
 Sigue estos pasos para correr el proyecto localmente:
 
@@ -44,7 +44,7 @@ Sigue estos pasos para correr el proyecto localmente:
 4.  **Abrir en el navegador:**
     Visita `http://localhost:5173` (o el puerto que indique la consola).
 
-## 📂 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 src/
@@ -56,13 +56,13 @@ src/
 └── main.jsx         # Punto de entrada
 ```
 
-## ✨ Puntos Destacados (Rúbrica)
+## Puntos Destacados (Rúbrica)
 
-- ✅ **Componentes Funcionales**: Uso de props y desestructuración.
-- ✅ **Hooks**: Gestión de estado con `useState` para filtros y formularios.
-- ✅ **Renderizado Condicional**: Manejo de estados de carga y listas vacías.
-- ✅ **Listas y Keys**: Renderizado eficiente de listas con `.map()`.
-- ✅ **Normalización de Datos**: Búsqueda robusta ignorando diacríticos.
+- **Componentes Funcionales**: Uso de props y desestructuración.
+- **Hooks**: Gestión de estado con `useState` para filtros y formularios.
+- **Renderizado Condicional**: Manejo de estados de carga y listas vacías.
+- **Listas y Keys**: Renderizado eficiente de listas con `.map()`.
+- **Normalización de Datos**: Búsqueda robusta ignorando diacríticos.
 
 ---
-Desarrollado con ❤️ por [Tu Nombre]
+
