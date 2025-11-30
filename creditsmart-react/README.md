@@ -27,7 +27,7 @@ Sigue estos pasos para correr el proyecto localmente:
 
 1.  **Clonar el repositorio:**
     ```bash
-    git clone <URL_DEL_REPOSITORIO>
+    git clone <https://github.com/Emanuel-117/ApppReact.git>
     cd creditsmart-react
     ```
 
