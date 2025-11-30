@@ -9,7 +9,7 @@ const Simulator = () => {
   const [rangoMonto, setRangoMonto] = useState('');
   const [filteredCredits, setFilteredCredits] = useState(creditsData);
 
-  // Función auxiliar para normalizar texto (quitar tildes y pasar a minúsculas)
+  // Función auxiliar para normalizar texto 
   const normalizeText = (text) => {
     return text
       .toLowerCase()
@@ -21,7 +21,7 @@ const Simulator = () => {
   const handleFilter = () => {
     let filtered = [...creditsData];
 
-    // Filtrar por texto de búsqueda (ignorando tildes y mayúsculas)
+    // Filtrar por texto de búsqueda
     if (searchText.trim() !== '') {
       const searchNormalized = normalizeText(searchText);
 
@@ -35,14 +35,12 @@ const Simulator = () => {
     if (rangoMonto !== '') {
       filtered = filtered.filter(credit => {
         if (rangoMonto === 'bajo') {
-          // Muestra si el crédito empieza en menos de 20M
+
           return credit.minAmount <= 20000000;
         } else if (rangoMonto === 'medio') {
-          // Muestra si el crédito tiene cobertura entre 20M y 150M
-          // (el mínimo es menor a 150M Y el máximo es mayor a 20M)
           return credit.minAmount <= 150000000 && credit.maxAmount >= 20000000;
         } else if (rangoMonto === 'alto') {
-          // Muestra si el crédito llega a más de 150M
+
           return credit.maxAmount >= 150000000;
         }
         return true;
