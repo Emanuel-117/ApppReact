@@ -51,13 +51,10 @@ header {
   padding: 12px 20px;
   text-align: center;
   position: sticky;
-  /* Hace que se pegue */
   top: 0;
-  /* Se pega al borde superior */
   z-index: 1000;
-  /* Se asegura de estar por encima de todo */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  /* Sombra para resaltar */
+
 }
 
 /* Logo y título */
