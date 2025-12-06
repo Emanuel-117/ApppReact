@@ -35,13 +35,12 @@ const Simulator = () => {
     if (rangoMonto !== '') {
       filtered = filtered.filter(credit => {
         if (rangoMonto === 'bajo') {
-
-          return credit.minAmount <= 20000000;
+          return credit.maxAmount <= 50000000;
         } else if (rangoMonto === 'medio') {
-          return credit.minAmount <= 150000000 && credit.maxAmount >= 20000000;
+          return credit.minAmount <= 200000000 && credit.maxAmount >= 50000000;
         } else if (rangoMonto === 'alto') {
 
-          return credit.maxAmount >= 150000000;
+          return credit.maxAmount >= 200000000;
         }
         return true;
       });
@@ -84,9 +83,9 @@ const Simulator = () => {
             onChange={(e) => setRangoMonto(e.target.value)}
           >
             <option value="">Todos los rangos</option>
-            <option value="bajo">Hasta $20.000.000</option>
-            <option value="medio">$20.000.000 - $150.000.000</option>
-            <option value="alto">Más de $150.000.000</option>
+            <option value="bajo">Hasta $50.000.000</option>
+            <option value="medio">$50.000.000 - $200.000.000</option>
+            <option value="alto">Más de $200.000.000</option>
           </select>
         </div>
 
