@@ -6,6 +6,8 @@ import './App.css';
 import Catalog from './pages/Catalog';
 import Simulator from './pages/Simulator';
 import Solicitar from './pages/Solicitar';
+import CalculadoraCuota from './pages/CalculadoraCuota';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -27,7 +29,9 @@ function App() {
               </>
             } />
             <Route path="/simulador" element={<Simulator />} />
+            <Route path="/calculadora" element={<CalculadoraCuota />} />
             <Route path="/solicitar" element={<Solicitar />} />
+            <Route path="/admin" element={<Admin />} />
           </Routes>
         </main>
         <Footer />

@@ -1,8 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase/config';
 import '../css/Solicitar.css';
 
 
 const Solicitar = () => {
+    const [searchParams] = useSearchParams();
+    const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
+
     const [formData, setFormData] = useState({
         nombre: '',
         cedula: '',
@@ -17,6 +24,22 @@ const Solicitar = () => {
         ingresos: ''
     });
 
+    // Precargar datos desde la calculadora
+    useEffect(() => {
+        const montoURL = searchParams.get('monto');
+        const plazoURL = searchParams.get('plazo');
+        const tipoURL = searchParams.get('tipo');
+
+        if (montoURL || plazoURL || tipoURL) {
+            setFormData(prev => ({
+                ...prev,
+                monto: montoURL || prev.monto,
+                plazo: plazoURL || prev.plazo,
+                tipoCredito: tipoURL || prev.tipoCredito
+            }));
+        }
+    }, [searchParams]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -25,11 +48,30 @@ const Solicitar = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Formulario enviado:', formData);
-        alert('¡Solicitud enviada exitosamente! Nos pondremos en contacto contigo pronto.');
-        // Aquí podrías enviar los datos a un backend
+        setLoading(true);
+
+        try {
+            // Guardar en Firebase
+            await addDoc(collection(db, 'solicitudes'), {
+                ...formData,
+                estado: 'pendiente',
+                fechaSolicitud: serverTimestamp()
+            });
+
+            alert('¡Solicitud enviada exitosamente! Nos pondremos en contacto contigo pronto.');
+
+            // Limpiar formulario
+            handleReset();
+
+
+        } catch (error) {
+            console.error('Error al guardar solicitud:', error);
+            alert('Hubo un error al enviar la solicitud. Por favor intenta de nuevo.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const handleReset = () => {
@@ -207,8 +249,12 @@ const Solicitar = () => {
                 </fieldset>
 
                 <div className="form-actions">
-                    <button type="submit" className="btn-primary">Enviar</button>
-                    <button type="button" className="btn-secondary" onClick={handleReset}>Limpiar</button>
+                    <button type="submit" className="btn-primary" disabled={loading}>
+                        {loading ? 'Enviando...' : 'Enviar'}
+                    </button>
+                    <button type="button" className="btn-secondary" onClick={handleReset} disabled={loading}>
+                        Limpiar
+                    </button>
                 </div>
             </form>
         </div>

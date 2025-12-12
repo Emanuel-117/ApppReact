@@ -1,9 +1,32 @@
 import CreditCards from '../components/CreditCards';
-import { creditsData } from '../data/creditsData';
+import { useCredits } from '../hooks/useCredits';
 import '../css/Catalog.css';
 
 
 const Catalog = () => {
+    const { credits, loading, error } = useCredits();
+
+    if (loading) {
+        return (
+            <div className="catalog-container">
+                <div className="titulo-seccion">
+                    <h2>Cargando productos...</h2>
+                </div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="catalog-container">
+                <div className="titulo-seccion">
+                    <h2>Error al cargar productos</h2>
+                    <p className="subtitle">{error}</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="catalog-container">
             {/* Título de la sección */}
@@ -12,9 +35,9 @@ const Catalog = () => {
                 <p className="subtitle">Explora todos nuestros productos de crédito disponibles</p>
             </div>
 
-            {/* Catálogo de créditos */}
+            {/* Catálogo de crédito*/}
             <section className="catalogo">
-                {creditsData.map(credit => (
+                {credits.map(credit => (
                     <CreditCards key={credit.id} credit={credit} />
                 ))}
             </section>

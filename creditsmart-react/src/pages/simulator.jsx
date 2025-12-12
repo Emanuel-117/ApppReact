@@ -1,13 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CreditCards from '../components/CreditCards';
-import { creditsData } from '../data/creditsData';
+import { useCredits } from '../hooks/useCredits';
 import '../css/Simulator.css';
 
 
 const Simulator = () => {
+  const { credits, loading, error } = useCredits();
   const [searchText, setSearchText] = useState('');
   const [rangoMonto, setRangoMonto] = useState('');
-  const [filteredCredits, setFilteredCredits] = useState(creditsData);
+  const [filteredCredits, setFilteredCredits] = useState([]);
+
+  // Inicializar filteredCredits cuando se cargan los créditos
+  useEffect(() => {
+    if (credits.length > 0) {
+      setFilteredCredits(credits);
+    }
+  }, [credits]);
 
   // Función auxiliar para normalizar texto 
   const normalizeText = (text) => {
@@ -19,7 +27,7 @@ const Simulator = () => {
 
   // Función para aplicar filtros
   const handleFilter = () => {
-    let filtered = [...creditsData];
+    let filtered = [...credits];
 
     // Filtrar por texto de búsqueda
     if (searchText.trim() !== '') {
@@ -53,8 +61,25 @@ const Simulator = () => {
   const handleReset = () => {
     setSearchText('');
     setRangoMonto('');
-    setFilteredCredits(creditsData);
+    setFilteredCredits(credits);
   };
+
+  if (loading) {
+    return (
+      <div className="simulator-container">
+        <h2>Cargando créditos...</h2>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="simulator-container">
+        <h2>Error al cargar créditos</h2>
+        <p>{error}</p>
+      </div>
+    );
+  }
 
   return (
     <div className="simulator-container">

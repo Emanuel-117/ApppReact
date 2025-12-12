@@ -17,10 +17,16 @@ const Header = () => {
                     Catálogo
                 </NavLink>
                 <NavLink to="/simulador" className={({ isActive }) => isActive ? 'active' : ''}>
-                    Simulador
+                    Filtro
+                </NavLink>
+                <NavLink to="/calculadora" className={({ isActive }) => isActive ? 'active' : ''}>
+                    Interes libre
                 </NavLink>
                 <NavLink to="/solicitar" className={({ isActive }) => isActive ? 'active' : ''}>
                     Solicitar Crédito
+                </NavLink>
+                <NavLink to="/admin" className={({ isActive }) => isActive ? 'active' : ''}>
+                    Administracion
                 </NavLink>
             </nav>
         </header>

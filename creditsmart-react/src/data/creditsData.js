@@ -1,4 +1,4 @@
-import libreInversionImg from '../components/images/icono-libre-inversion.png';
+/*import libreInversionImg from '../components/images/icono-libre-inversion.png';
 import vehiculoImg from '../components/images/icono-vehiculo.png';
 import viviendaImg from '../components/images/icono-vivienda.png';
 import educativoImg from '../components/images/icono-educativo.png';
@@ -60,4 +60,4 @@ export const creditsData = [
         icon: empresarialImg,
         type: "empresarial"
     }
-];
+];*/
